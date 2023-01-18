@@ -21,6 +21,7 @@ jobs:
     needs: build
     name: Deploy to production_foo
     environment: production_foo
+    if: github.ref == 'refs/heads/production_foo'
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
@@ -30,6 +31,7 @@ jobs:
     needs: build
     name: Deploy to staging_foo
     environment: staging_foo
+    if: github.ref == 'refs/heads/main'
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
@@ -39,6 +41,7 @@ jobs:
     needs: build
     name: Deploy to staging_bar
     environment: staging_bar
+    if: github.ref == 'refs/heads/staging_bar'
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
