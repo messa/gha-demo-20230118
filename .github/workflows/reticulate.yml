@@ -39,14 +39,14 @@ jobs:
     
     env:
       FUNCTION_NAME_D: $FUNCTION_NAME_STAGING_FOO
-      FUNCTION_NAME_VARS: ${{ vars.FUNCTION_NAME_STAGING_FOO }}
-      # FUNCTION_NAME_ENV: ${{ env.FUNCTION_NAME_STAGING_FOO }}
+      FUNCTION_NAME_ENV: ${{ env.FUNCTION_NAME_STAGING_FOO }}
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
       - run: export | grep FUN
       - run: echo env.FUNCTION_NAME_STAGING_FOO ${{ env.FUNCTION_NAME_STAGING_FOO }}
-      - run: echo env.FUNCTION_NAME_VARS ${{ env.FUNCTION_NAME_VARS }}
+      - run: echo env.FUNCTION_NAME_D           ${{ env.FUNCTION_NAME_D }}
+      - run: echo env.FUNCTION_NAME_ENV         ${{ env.FUNCTION_NAME_ENV }}
 
   deploy_staging_bar:
     runs-on: ubuntu-latest
