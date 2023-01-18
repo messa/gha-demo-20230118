@@ -16,11 +16,29 @@ jobs:
         run: |
           docker build -t app:${{ github.sha }} .
 
-  deploy:
+  deploy_production_foo:
     runs-on: ubuntu-latest
     needs: build
-    name: Deploy to ${{ vars.RETICULATE_NAME }}
+    name: Deploy to production_foo
     environment: production_foo
+  
+    steps:
+      - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
+
+  deploy_staging_foo:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Deploy to staging_foo
+    environment: staging_foo
+  
+    steps:
+      - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
+
+  deploy_staging_bar:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Deploy to staging_bar
+    environment: staging_bar
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
