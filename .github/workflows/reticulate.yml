@@ -16,6 +16,8 @@ jobs:
         run: |
           docker build -t app:${{ github.sha }} .
 
+      - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
+
   deploy_production_foo:
     runs-on: ubuntu-latest
     needs: build
@@ -45,3 +47,14 @@ jobs:
   
     steps:
       - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME
+
+  deploy_unknown:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Deploy to unknown
+    environment: unknown # spusti se tohle, i kdyz tento environment neni v settings repozitare?
+    #if: github.ref == 'refs/heads/main'
+  
+    steps:
+      - run: echo hello ${{ vars.RETICULATE_NAME }} $RETICULATE_NAME 
+        # tady snad zadne RETICULATE_NAME neni, kdyz je definovane jen v tech ostatnich environments
